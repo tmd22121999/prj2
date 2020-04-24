@@ -1,0 +1,61 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	font-size:20px;
+}
+
+#hder {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+}
+
+.header-li {
+  float: left;
+}
+
+.header-li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+.header-li a:hover {
+  background-color: #111;
+}
+.header-li a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+#ne-bar {
+	display:inline;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 15%;
+  background-color: #f1f1f1;
+  height: 100%; 
+  position: fixed; 
+  overflow: auto; 
+}
+
+.nev-bar-li a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.nev-bar-li a.active {
+  background-color: #4CAF50;
+  color: white;
+}

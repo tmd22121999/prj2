@@ -36,7 +36,7 @@
 		//print_r($uid);
 		if (!($arrResp['userId']==-1)){
 			$_SESSION["UID"]=$arrResp;
-			$message = $_SESSION["UID"];
+			$message = "aaaaa";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 			curl_close($curl);
 			header("Location: index.php");

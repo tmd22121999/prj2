@@ -9,7 +9,7 @@
     header("Location: login.php");
     exit;
 	}
-	$uid=$_SESSION["UID"]
+	$uid=$_SESSION["UID"];
 	echo $uid;
 	
 ?>

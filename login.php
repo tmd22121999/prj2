@@ -22,7 +22,7 @@
 			//$isEmail=preg_match("/@/",$username);
 			//if (!$isEmail) $url='https://fathomless-savannah-38522.herokuapp.com/api/auth/login/phone?password='.$password.'&phone='.$username;
 			//else 
-			$url='https://fathomless-savannah-38522.herokuapp.com/api/auth/login/email?account='.$username.'&password='.$password;
+			$url='https://fathomless-savannah-38522.herokuapp.com/api/auth/login?account='.$username.'&password='.$password;
 			$curl = curl_init();
 			curl_setopt_array($curl, array(
     		CURLOPT_RETURNTRANSFER => 1,

@@ -41,6 +41,9 @@
 			$message =json_encode($message);
 			echo "<script type='text/javascript'>alert('$message');</script>";
 			curl_close($curl);
+				echo '<script language="javascript">';
+				echo 'alert($arrResp)';
+				echo '</script>';
 			header("Location: index.php");
 			echo $uid;
 			echo "</br>";

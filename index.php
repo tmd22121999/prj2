@@ -1,15 +1,36 @@
 <?php 
 
 	session_start();
+	$uid=$_SESSION["UID"];
 	if (isset($_GET['logout'])) {
-   		 session_unset();
-          session_destroy();
+		$url='https://fathomless-savannah-38522.herokuapp.com/api/auth/sign_out';
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+    			CURLOPT_RETURNTRANSFER => 1,
+    			CURLOPT_URL => $url,
+    			CURLOPT_SSL_VERIFYPEER => false,
+			CURLOPT_POST =>1
+			
+		));
+		$headers = array(
+			"accept: */*",
+    			"Authorization: ".$uid
+		);
+		curl_setopt($curl,CURLOPT_HTTPHEADER,$headers);
+		$resp = curl_exec($curl);
+		$arrResp = json_decode($resp,true);
+		echo '<script language="javascript">';
+		echo 'alert($arrResp)';
+		echo '</script>';
+		curl_close($curl);
+   		session_unset();
+          	session_destroy();
   	}
 	if (!isset($_SESSION["UID"])){
     header("Location: login.php");
     exit;
 	}
-	$uid=$_SESSION["UID"];
+	
 	print($uid);
 	
 ?>

@@ -42,7 +42,7 @@
 			echo "<script type='text/javascript'>alert('$message');</script>";
 			curl_close($curl);
 				echo '<script  type="text/javascript">';
-				echo 'alert("'.$arrResp.'")';
+				echo 'alert("Đăng nhập thành công")';
 				echo '</script>';
 			header("Location: index.php");
 			echo $uid;

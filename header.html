@@ -7,13 +7,21 @@
 </head>
 
 <body>
-	<div id="header">
+	
 		<ul id="hder">
  			 <li class="header-li"><a href="index.php">Trang chủ</a></li>
-  			<li class="header-li"><a href="nofic.php">Thông báo</a></li>
-  			<li class="header-li"><a href="account.php">Tài khoản</a></li>
+  			<li class="header-li" ><a href="nofic.php">Thông báo</a></li>
+  			<li  id="info" class="header-li" >
+            	<a href="javascript:void(0)">Tài khoản</a>
+            	<div class="ac">
+                	<a href="acount.php">Thông tin cá nhân</a>
+                    <a href="acount.php">Thông tin cá nhân</a>
+                    <a href="?logout=true">đăng xuất </a>
+                    <form action="" method="post" name="signout"><input name="logout" type="submit"  value="Đăng xuất"/></form></li>
+               </div>
+            </li>
 		</ul>
-    </div>
+   
     <div id="nev-bar">
 		<ul id="ne-bar">
  			 <li class="nev-bar-li"><a href="tuvan.php">Yêu cầu tư vấn</a></li>

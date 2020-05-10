@@ -27,7 +27,7 @@ body{
 #hder{
 	margin:0;
 }
-li.header-li {
+.header-li {
   float: left;
   position: relative;
 }

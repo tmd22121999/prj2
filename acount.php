@@ -39,7 +39,7 @@
     <div id="form"> 
     	<div id="edit" onclick="edit();" >Chỉnh sửa</div>
         <form style="	margin: 50px 100px;;" action="" method="post" name="reg">
-           <img  src="https://i.stack.imgur.com/FaRRO.jpg?s=32&g=1" alt="Smiley face" height="250" width="250">
+           <img  src="https://st.quantrimang.com/photos/image/072015/22/avatar.jpg" alt="avatar" height="250" width="250">
             <div><span>Họ và tên</span>
                 <input class="iput" type="text" name="name" placeholder="Họ và tên" id="name" required />
             </div>

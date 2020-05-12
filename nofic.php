@@ -7,5 +7,6 @@
 </head>
 
 <body>
+<?php require "header.html"; ?>
 </body>
 </html>

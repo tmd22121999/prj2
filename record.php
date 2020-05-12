@@ -7,5 +7,14 @@
 </head>
 
 <body>
+<?php require "header.html"; ?>
+	<div> Thêm yêu cầu tư vấn mới </div>
+	<div>
+		<div>Ảnh</div>
+		<div>
+			<div>Tiêu đề</div>
+			<div>Mô tả</div>
+		</div>
+
 </body>
 </html>

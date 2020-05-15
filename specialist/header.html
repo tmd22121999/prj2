@@ -1,0 +1,58 @@
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--<link href="style.css" rel="stylesheet" type="text/css" />-->
+<style>
+#sidebar-wrapper{
+	height:100%;
+	max-width:180px;
+	position:fixed;
+}
+#main{
+	margin: 100px 50px auto 230px ;
+}
+.dropdown-menu{
+	left:-75px !important;
+}
+</style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	
+		
+    <nav id="sidebar-wrapper" class="navbar bg-light fixed">
+		<ul id="ne-bar" class="navbar-nav">
+ 			 <li  class="nav-brand"><a class="nav-link" href="record.php">Danh sách tư vấn</a></li>
+ 			 <li class="nav-item"><a class="nav-link" href="patient.php">Danh sách bệnh nhân</a></li>
+			<li class="nav-item"><a class="nav-link" href="contact.php">Trao đổi thêm với bệnh nhân</a></li>
+  			<li class="nav-item"><a class="nav-link" href="líchuckhoe.php">Lập lịch theo dõi thông số sức khỏe</a></li>
+		</ul>
+    </nav>
+		<nav id="hder" class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+ 			 <a class="navbar-brand  mr-auto" href="index.php">Trang chủ</a>
+        <ul    class="navbar-nav ">
+			<li class="nav-item ">
+				<a class="nav-link" href="nofic.php">Thông báo</a>
+			</li>
+    
+        <!-- Dropdown -->
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbardrop" data-toggle="dropdown">
+				Tài khoản
+				</a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="acount.php">Thông tin cá nhân</a>
+                    <a class="dropdown-item" href="patient.php">Quản lý bệnh nhân</a>
+                    <a class="dropdown-item" href="?logout=true">đăng xuất </a>
+          		</div>
+        	</li>
+		</ul>
+            
+            
+		</nav>
+   
+    
+</body>
+</html>

@@ -6,7 +6,8 @@
 </head>
 <body>
 <?php require "header.html"; ?>
-<div id="main" class="container">
+	<p>.</p><br/>
+<div id="main" class="container content">
 	<div> Danh sách bênh nhân</div>
 	<table class="table table-hover">
     <thead>

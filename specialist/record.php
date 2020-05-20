@@ -7,7 +7,7 @@
 
 <body>
 <?php require "header.html"; ?>
-<div id="main" class="container">
+<div id="main" class="container content">
 
 <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">

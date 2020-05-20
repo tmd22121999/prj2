@@ -35,7 +35,7 @@
 		$arrResp = json_decode($resp,true);
 		//var_dump($weather);
 		//print_r($uid);
-		if (!($arrResp['userId']==-1)){
+		if ((is_string($arrResp))){
 			$_SESSION["UID"]=$arrResp;
 			$message = "aaaaa";
 			$message =json_encode($message);
@@ -48,6 +48,7 @@
 			echo $uid;
 			echo "</br>";
 		}else {
+			echo "<script type='text/javascript'>alert('đăng nhập thất bại');</script>";
 			$error['pass']="Sai email,sdt hoặc mật khẩu, mời bạn nhập lại.";
 			}
 		curl_close($curl);

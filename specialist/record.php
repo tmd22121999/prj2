@@ -7,8 +7,8 @@
 
 <body>
 <?php require "header.html"; ?>
-	<br/>
-<div id="main" class="container content">
+<div id="main" class="container">
+
 <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
       <a class="nav-link active" data-toggle="tab" href="#newpa">Tư vấn của bệnh nhân mới</a>

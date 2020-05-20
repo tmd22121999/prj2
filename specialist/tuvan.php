@@ -3,7 +3,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Trả lời tư vấn</title>
-
+<style>
+	body{
+		background-color:#DDD;
+	}
+	html {
+		scroll-behavior: smooth;
+		background-color:#DDD;
+	}
+	.content {
+		background-color: #FFF;
+		margin:30px 3% 50px 0px;
+		padding:40px 5% 70px 40px;
+	}
+</style>
 </head>
 
 <body>

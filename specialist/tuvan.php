@@ -5,7 +5,7 @@
 <title>Trả lời tư vấn</title>
 <style>
 	body{
-		background-color:#DDD;
+		background-color:#DDD !important;
 	}
 	html {
 		scroll-behavior: smooth;

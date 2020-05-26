@@ -47,7 +47,6 @@ if (isset($_GET['logout'])) {
 	//print_r($arrResp);
 	$name=$arrResp['name'];
 	$email=$arrResp['email'];
-	$avatar=$arrResp['avatar'];
 	$gender=$arrResp['gender'];
 	$age=$arrResp['age'];
 	$bd=$arrResp['dateOfBirth'];
@@ -91,14 +90,13 @@ if (isset($_GET['logout'])) {
 
 <body>
 <?php require "header.html"; ?>
-    <p>.</p><br/>
-    <div id="main" class="content">
+    <div id="main">
     <h1>THÔNG TIN CÁ NHÂN</h1>
    
     <div id="form"> 
-    	<div class=" btn btn-primary"  id="edit" onclick="edit();" >Chỉnh sửa</div>
+    	<div id="edit" onclick="edit();" >Chỉnh sửa</div>
         <form id="myForm" style="	margin: 50px 100px;;" action="" method="post" name="reg">
-           <img  src="  <?php echo $avatar ?>" alt="Avatar" height="250" width="250">
+           <img  src="https://i.stack.imgur.com/FaRRO.jpg?s=32&g=1" alt="Smiley face" height="250" width="250">
             
             <div class="form-group">
                 <label for="name">Họ và tên :</label>
@@ -152,8 +150,8 @@ if (isset($_GET['logout'])) {
              <div><span>Địa chỉ</span> <input class="iput" type="text" name="adress" placeholder="Địa chỉ" value="không có :v" id="adress"   /></div>
              <div>Ngày tạo <?php echo $creatAt[2] . "/". $creatAt[1] ."/" . $creatAt[0]  ?>
             <div id="submit1">
-                  <button style="width:40%;" type="submit" class="btn btn-success"  type="submit"  name="submit" id="save" >LƯU LẠI</button>
-                   <button style="width:40%;" type="button" class="btn btn-danger" onclick="cance();">HỦY BỎ</button>
+            	<input class="submit" type="submit"  name="submit" id="save" value="LƯU LẠI"  />
+            	<input class="submit"  onclick="cance();" value="HỦY BỎ"/>
             </div>
         </form>
     </div>

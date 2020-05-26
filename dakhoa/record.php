@@ -1,8 +1,7 @@
 <?php 
 	session_start();
 	$uid=$_SESSION["UID"];
-	echo $uid;
-	$url='https://fathomless-savannah-38522.herokuapp.com/api/inquiries?page=1&size=4';
+	$url='https://fathomless-savannah-38522.herokuapp.com/api/record';
 	$curl = curl_init();
 	curl_setopt_array($curl, array(
 		CURLOPT_RETURNTRANSFER => 1,
@@ -21,7 +20,7 @@
 	$arrResp = json_decode($resp,true);
 	//print_r($arrResp);
 	$arrInj=$arrResp['content'];
-	//print_r($arrResp);
+	print_r($arrResp);
 	curl_close($curl);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -130,9 +129,9 @@
       <?php
 	 foreach ($arrInj as $value) {
 		 echo "<tr>";
-      	echo "<td>". $value['id']. "</td>";
       	echo "<td>". $value['patient']['name']. "</td>";
-        echo "<td>". $value['content']. "</td>";
+        echo "<td>Bệnh nhân 01</td>";
+        echo "<td>Đau bụng</td>";	
          echo " <td>";
        echo 	"<a href=\"tuvan.php\" class=\" btn btn-success\" >Chấp nhận</a>";
        echo     "<a href=\"tuvan.php\" class=\"btn btn-danger\" >Từ chối</a>";

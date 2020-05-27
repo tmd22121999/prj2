@@ -1,3 +1,4 @@
+
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--<link href="style.css" rel="stylesheet" type="text/css" />-->
@@ -30,7 +31,7 @@ html {
 		margin:30px 3% 50px 0px;
 		padding:40px 5% 70px 40px;
 	}
-input , select{
+input , select,label{
     pointer-events: none;
 }
 #submit1{
@@ -41,14 +42,30 @@ input , select{
 	float:right;
 	cursor: pointer;
 }
+/* Paste this css to your style sheet file or under head tag */
+/* This only works with JavaScript, 
+if it's not present, don't show loader */
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(https://smallenvelop.com/wp-content/uploads/2014/08/Preloader_11.gif) center no-repeat #fff;
+}
 </style>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+
 </head>
 <body>
-	
+
 		
     <nav id="sidebar-wrapper" class="navbar bg-light fixed">
 		<ul id="ne-bar" class="navbar-nav">

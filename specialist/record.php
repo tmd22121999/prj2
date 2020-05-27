@@ -1,3 +1,14 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+<script>
+//paste this code under the head tag or in a separate js file.
+	// Wait for window load
+	$(window).load(function() {
+		// Animate loader off screen
+		$(".se-pre-con").fadeOut("slow");;
+	});</script>
+    <div class="se-pre-con"></div>
+
 <?php 
 	session_start();
 	$uid=$_SESSION["UID"];
@@ -29,9 +40,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Danh sách tư vấn</title>
+
 </head>
 
 <body>
+
 <?php require "header.html"; ?>
 <p>.</p><br/>
 <div id="main" class="container content">
@@ -134,8 +147,8 @@
       	echo "<td>". $value['patient']['name']. "</td>";
         echo "<td>". $value['content']. "</td>";
          echo " <td>";
-       echo 	"<a href=\"tuvan.php\" class=\" btn btn-success\" >Chấp nhận</a>";
-       echo     "<a href=\"tuvan.php\" class=\"btn btn-danger\" >Từ chối</a>";
+       echo 	"<a href=\"tuvan.php?id=". $value['id'] ."\" class=\" btn btn-primary\" >Xem chi tiết yêu cầu</a>";
+       //echo     "<a href=\"tuvan.php\" class=\"btn btn-danger\" >Từ chối</a>";
        echo " </td>	";
 	   
 	   echo "</tr>";

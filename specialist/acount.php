@@ -68,6 +68,11 @@ if (isset($_GET['logout'])) {
 		for (i = 0; i < x.length; i++) {
 			x[i].style['pointer-events'] = 'auto';
 		}
+		var x = document.getElementsByTagName("label");
+		var i;
+		for (i = 0; i < x.length; i++) {
+			x[i].style['pointer-events'] = 'auto';
+		}
 		x=document.getElementById("edit");
 		x.style.display="none";
 		x=document.getElementById("submit1");
@@ -75,6 +80,11 @@ if (isset($_GET['logout'])) {
 	};
 	function cance(){
 		var x = document.getElementsByTagName("input");
+		var i;
+		for (i = 0; i < x.length; i++) {
+			x[i].style['pointer-events'] = 'none';
+		}
+		var x = document.getElementsByTagName("label");
 		var i;
 		for (i = 0; i < x.length; i++) {
 			x[i].style['pointer-events'] = 'none';

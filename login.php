@@ -39,14 +39,14 @@
 		//print_r($uid);
 		if (is_string($arrResp)){
 			$_SESSION["UID"]=$arrResp;
-			$message = "aaaaa";
-			$message =json_encode($message);
-			echo "<script type='text/javascript'>alert('$message');</script>";
+			//$message = "aaaaa";
+			//$message =$arrResp['message'];;
+			//echo "<script type='text/javascript'>alert('$message');
 			curl_close($curl);
-				echo '<script  type="text/javascript">';
-				echo 'alert(\"Đăng nhập thành công\")';
+				echo '<script>';
+				echo 'alert("Đăng nhập thành công");';
+				echo "window.location = 'index.php';";
 				echo '</script>';
-			header("Location: index.php");
 			echo $uid;
 			echo "</br>";
 		}else {

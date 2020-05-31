@@ -35,7 +35,7 @@
 <?php require "header.html"; ?>
 <p>.</p><br/>
 <div id="main" class="container content">
-	<div> Danh sách bênh nhân</div>
+	<div> <h2>Danh sách bênh nhân</h2></div>
 	<table class="table table-hover">
     <thead>
       <tr>
@@ -51,7 +51,7 @@
 	 foreach ($arrInj as $value) {
 		 echo "<tr>";
       	echo "<td>". $value['id']. "</td>";
-      	echo "<td><img src=\"". $value['avatar']. "\" alt=\"Avatar\" height=\"250\" width=\"250\"></td>";
+      	echo "<td><img src=\"". $value['avatar']. "\" alt=\"Avatar\" height=\"150\" width=\"150\"></td>";
         echo "<td>". $value['name']. "</td>";
 		echo "<td>". $value['age']. "</td>";
      //   echo "<td>". $value['name']. "</td>";
@@ -65,6 +65,15 @@
 		?>
     </tbody>
   </table>
+    	<ul class="pagination  justify-content-center" style="margin:20px 0">
+      <li class="page-item  <?php if($arrResp['first']) echo 'disabled' ;?>"><a class="page-link" href="?page=<?php echo $page-1; ?>">Previous</a></li>
+      <?php for($i = 1; $i <= $arrResp['totalPages']; $i++) { ?>
+      <li class="page-item  <?php if($i==$page) echo 'active' ;?> "><a class="page-link" href="?page=<?php echo $i .' ">'.$i; ?></a></li>
+	  <?php 
+	  	};
+	  ?>
+      <li class="page-item <?php if($arrResp['last']) echo 'disabled' ;?> "><a class="page-link" href="?page=<?php echo $page+1; ?>">Next</a></li>
+	</ul>
 </div>
 </body>
 </html>

@@ -12,8 +12,10 @@
 <?php 
 	session_start();
 	$uid=$_SESSION["UID"];
+	$page=1;
+	if(isset($_GET['page']) ) $page=$_GET['page'];
 	echo $uid;
-	$url='https://fathomless-savannah-38522.herokuapp.com/api/inquiries?page=1&size=4';
+	$url='https://fathomless-savannah-38522.herokuapp.com/api/inquiries?page=' .$page .'&size=10';
 	$curl = curl_init();
 	curl_setopt_array($curl, array(
 		CURLOPT_RETURNTRANSFER => 1,
@@ -54,13 +56,13 @@
       <a class="nav-link active" data-toggle="tab" href="#all">Tất cả yêu cầu tư vấn</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#newpa">Tư vấn của bệnh nhân mới</a>
+      <a class="nav-link" data-toggle="tab" href="#newpa">Bệnh nhân chưa được gán</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#newinj">Tư vấn mới</a>
+      <a class="nav-link" data-toggle="tab" href="#newinj">Yêu cầu tư vấn mới</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#inj">Tư vấn cũ</a>
+      <a class="nav-link" data-toggle="tab" href="#inj">Yêu cầu tư vấn cũ</a>
     </li>
   </ul>
 
@@ -156,6 +158,15 @@
 		?>
     </tbody>
   </table>
+  	<ul class="pagination  justify-content-center" style="margin:20px 0">
+      <li class="page-item  <?php if($arrResp['first']) echo 'disabled' ;?>"><a class="page-link" href="?page=<?php echo $page-1; ?>">Previous</a></li>
+      <?php for($i = 1; $i <= $arrResp['totalPages']; $i++) { ?>
+      <li class="page-item  <?php if($i==$page) echo 'active' ;?> "><a class="page-link" href="?page=<?php echo $i .' ">'.$i; ?></a></li>
+	  <?php 
+	  	};
+	  ?>
+      <li class="page-item <?php if($arrResp['last']) echo 'disabled' ;?> "><a class="page-link" href="?page=<?php echo $page+1; ?>">Next</a></li>
+	</ul>
     </div>
     
   </div>
@@ -212,6 +223,9 @@
       </tr>
     </tbody>
   </table>-->
+  
+	
+	  
 </div>
 </body>
 </html>

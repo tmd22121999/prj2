@@ -68,8 +68,11 @@ if (isset($_GET['logout'])) {
 		for (i = 0; i < x.length; i++) {
 			x[i].style['pointer-events'] = 'auto';
 		}
+		var x = document.getElementsByTagName("select");
+		for (i = 0; i < x.length; i++) {
+			x[i].style['pointer-events'] = 'auto';
+		}
 		var x = document.getElementsByTagName("label");
-		var i;
 		for (i = 0; i < x.length; i++) {
 			x[i].style['pointer-events'] = 'auto';
 		}
@@ -84,8 +87,11 @@ if (isset($_GET['logout'])) {
 		for (i = 0; i < x.length; i++) {
 			x[i].style['pointer-events'] = 'none';
 		}
+		var x = document.getElementsByTagName("select");
+		for (i = 0; i < x.length; i++) {
+			x[i].style['pointer-events'] = 'none';
+		}
 		var x = document.getElementsByTagName("label");
-		var i;
 		for (i = 0; i < x.length; i++) {
 			x[i].style['pointer-events'] = 'none';
 		}

@@ -23,7 +23,7 @@
 	$arrInj=$arrResp;
 	$date=$arrInj['date'];
 	curl_close($curl);
-		//print_r($arrInj);
+		//print($resp);
 	$type=$arrInj['type'];
 	echo "type : " .$type;
 	$pantient=$arrInj['patient'];
@@ -87,7 +87,9 @@
                 <div id="accordion">
 <?php
 	$i=0;
-	foreach($arrResp['medicalRecords'] as $value){ $i++;?>
+	if (!$arrResp['type']) $a='medicalRecords';
+	else  $a='dietRecords';
+	foreach($arrResp[$a] as $value){ $i++;?>
   
                   <div class="card">
                     <div class="card-header">
@@ -99,15 +101,16 @@
                       <div class="card-body">
                          <div class="row">
                             <div class="col-md-4">
-                               <img  src="  <?php echo $value['specialist']['avatar'] ?>" alt="Avatar" height="50" width="50">
+                               <img  src="  <?php echo $value['doctor']['avatar'] ?>" alt="Avatar" height="50" width="50">
                             	<?php
-                                    echo "<div><h6>Tư vấn của bác sĩ chuyên khoa :</h6>  ".$value['specialist']['name'].", ".$value['specialist']['age'] ." tuổi</div>";
+                                    echo "<div><h6>Tư vấn của bác sĩ  :</h6>  ".$value['doctor']['name'].", ".$value['doctor']['age'] ." tuổi</div>";
+									echo "<div>Chuyên môn  : " .$value['doctor']['specialty']['name'] ." (".$value['doctor']['specialty']['detail'] .") </div>";
                                 ?>
                             </div>
                             <div class="col-md-8">
 								<?php
-                                    echo "<div><h6>Chuẩn đoán :</h6>  ".$value['diagnose']."</div>";
-                                    if ($type==0) echo "<div><h6>Đơn thuốc :</h6>  ".$value['prescription']."</div>";
+									 if ($type==0) echo "<div><h6>Chuẩn đoán :</h6>  ".$value['diagnose']."</div>";
+                                    echo "<div><h6>Kê đơn :</h6>  ".$value['prescription']."</div>";
                                     echo "<div><h6>Kết luận : </h6> ".$value['note']."</div>";
                                 ?>
                             </div>
@@ -127,14 +130,18 @@
 		<form action="tuvan.php" method="post" class="content" name="yctuvan">
         <h3 id="reply" class=" show fade"> Nhập trả lời tư vấn </h3><br />
           <div class="row">
-  			<div class="col-md"> <div class="form-group">
-          <label for="chuandoan"><h5>Chuẩn đoán:</h5></label>
-          <textarea name="chuandoan" class="form-control" rows="7" id="chuandoan"></textarea>
-        </div></div>
   			<div  id="kedon" class="col-md"><div class="form-group">
           <label for="kedon"><h5>Kê đơn:</h5></label>
           <textarea name="kedon" class="form-control" rows="7" id="kedone"></textarea>
         </div> </div>
+        
+        <?php if($type==0) {?>
+  			
+        <div class="col-md"> <div class="form-group">
+          <label for="chuandoan"><h5>Chuẩn đoán:</h5></label>
+          <textarea name="chuandoan" class="form-control" rows="7" id="chuandoan"></textarea>
+        </div></div>
+        <?php } ;?>
 		</div>
         <div class="form-group">
           <label for="ketluan"><h5>kết luận:</h5></label>
@@ -153,7 +160,7 @@
 </body>
 </html>
 <script>
-		document.getElementById("kedon");
-		if(<?php echo $type?>==1)
-			document.getElementById("kedon").style.display="none";
+//		document.getElementById("kedon");
+//		if(</?php echo $type?>==1)
+//			document.getElementById("kedon").style.display="none";
 </script>

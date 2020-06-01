@@ -69,24 +69,47 @@
   <!-- Tab panes -->
   <div class="tab-content">
     <div id="newpa" class="container tab-pane fade"><br>
-      <h3> Danh sách tư vấn của bệnh nhân mới</h3>
+      <h3> Danh sách tư vấn của bệnh nhân mới chưa được gán</h3>
 	<table class="table table-hover">
     <thead>
       <tr>
+      	<th>ID</th>
         <th>Họ tên</th>
         <th>Mô tả</th>
         <th>gì đó</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
+    
+    <?php
+	$i=0;
+	 foreach ($arrInj as $value) {
+		 
+		 if($value['patient']['status']<4){
+		 echo "<tr>";
+      	echo "<td>". $value['id']. "</td>";
+      	echo "<td>". $value['patient']['name']. "</td>";
+        echo "<td>". $value['content']. "</td>";
+         echo " <td>";
+       echo 	"<a href=\"tuvan.php?id=". $value['id'] ."\" class=\" btn btn-success\" >Chấp nhận</a>";
+       echo 	"<a href=\"tuvan.php?id=". $value['id'] ."\" class=\" btn btn-danger\" >Từ chối</a>";
+       echo " </td>	";
+	   
+	   echo "</tr>";
+	   $i++;
+		 };
+		};
+		if(!$i) echo "<p class='text-danger' >Không có yêu cầu tư vấn nào của bệnh nhân chưa được gán trong trang $page.</p>";
+		?>
+    
+<!--      <tr>
         <td>Bệnh nhân 01</td>
         <td>Đau bụng</td>
         <td>
         	<a href="tuvan.php" class=" btn btn-success" >Chấp nhận</a>
             <a href="tuvan.php" class="btn btn-danger" >Từ chối</a>
         </td>
-      </tr>
+      </tr>-->
     </tbody>
   </table>
     </div>
@@ -95,17 +118,40 @@
 	<table class="table table-hover">
     <thead>
       <tr>
+      	<th>ID</th>
         <th>Họ tên</th>
         <th>Mô tả</th>
         <th>gì đó</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
+    
+    <?php
+	$i=0;
+	 foreach ($arrInj as $value) {
+		 $mr=$value['medicalRecords'];
+		 if(($value['patient']['status']>4) &( empty($mr) ) ){
+		 echo "<tr>";
+      	echo "<td>". $value['id']. "</td>";
+      	echo "<td>". $value['patient']['name']. "</td>";
+        echo "<td>". $value['content']. "</td>";
+         echo " <td>";
+       echo 	"<a href=\"tuvan.php?id=". $value['id'] ."\" class=\" btn btn-success\" >Trả lời tư vấn</p>";
+       echo " </td>	";
+	   
+	   echo "</tr>";
+	   $i++;
+		 };
+		
+		};
+		if(!$i) echo " <p class='text-danger' >Không có yêu cầu tư vấn nào mới trong trang $page.</p>";
+		?>    
+    
+<!--      <tr>
         <td>Bệnh nhân 01</td>
         <td>Đau bụng</td>
         <td><a href="tuvan.php" class="nav-link" >Trả lời tư vấn </a></td>
-      </tr>
+      </tr>-->
     </tbody>
   </table>
     </div>
@@ -114,18 +160,38 @@
 	<table class="table table-hover">
     <thead>
       <tr>
+      	<th>ID</th>
         <th>Họ tên</th>
         <th>Mô tả</th>
         <th>gì đó</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
+      
+    <?php
+	 foreach ($arrInj as $value) {
+		 $mr=$value['medicalRecords'];
+		 if(($value['patient']['status']>4) &( !empty($mr) ) ){
+		 echo "<tr>";
+      	echo "<td>". $value['id']. "</td>";
+      	echo "<td>". $value['patient']['name']. "</td>";
+        echo "<td>". $value['content']. "</td>";
+         echo " <td>";
+       echo 	"<a href=\"tuvan.php?id=". $value['id'] ."\" class=\" btn btn-warning\" >Trao đổi thêm</a>";
+       echo " </td>	";
+	   
+	   echo "</tr>";
+		 };
+		// else echo "Không có yêu cầu tư vấn nào của bệnh nhân chưa được gán.
+		};
+		?>    
+      
+<!--      <tr>
         <td>Bệnh nhân 01</td>
         <td>Đau bụng</td>
         <td><a href="tuvan.php" class="nav-link" >Trao đổi thêm </a></td>
       </tr>
-    </tbody>
+-->    </tbody>
   </table>
     </div>
     
@@ -158,21 +224,13 @@
 		?>
     </tbody>
   </table>
-  	<ul class="pagination  justify-content-center" style="margin:20px 0">
-      <li class="page-item  <?php if($arrResp['first']) echo 'disabled' ;?>"><a class="page-link" href="?page=<?php echo $page-1; ?>">Previous</a></li>
-      <?php for($i = 1; $i <= $arrResp['totalPages']; $i++) { ?>
-      <li class="page-item  <?php if($i==$page) echo 'active' ;?> "><a class="page-link" href="?page=<?php echo $i .' ">'.$i; ?></a></li>
-	  <?php 
-	  	};
-	  ?>
-      <li class="page-item <?php if($arrResp['last']) echo 'disabled' ;?> "><a class="page-link" href="?page=<?php echo $page+1; ?>">Next</a></li>
-	</ul>
+
     </div>
     
   </div>
   
-</div>
-	<!--<h3> Danh sách tư vấn của bệnh nhân mới</h3>
+
+	<!-- <h3> Danh sách tư vấn của bệnh nhân mới</h3>
 	<table class="table table-hover">
     <thead>
       <tr>
@@ -225,6 +283,15 @@
   </table>-->
   
 	
+  	<ul class="pagination  justify-content-center" style="margin:20px 0">
+      <li class="page-item  <?php if($arrResp['first']) echo 'disabled' ;?>"><a class="page-link" href="?page=<?php echo $page-1; ?>">Previous</a></li>
+      <?php for($i = 1; $i <= $arrResp['totalPages']; $i++) { ?>
+      <li class="page-item  <?php if($i==$page) echo 'active' ;?> "><a class="page-link" href="?page=<?php echo $i .' ">'.$i; ?></a></li>
+	  <?php 
+	  	};
+	  ?>
+      <li class="page-item <?php if($arrResp['last']) echo 'disabled' ;?> "><a class="page-link" href="?page=<?php echo $page+1; ?>">Next</a></li>
+	</ul>
 	  
 </div>
 </body>

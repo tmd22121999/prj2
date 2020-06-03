@@ -1,6 +1,6 @@
 <?php 
 
-//	session_start();
+	session_start();
 //	$uid=$_SESSION["UID"];
 //	if (isset($_GET['logout'])) {
 //		$url='https://fathomless-savannah-38522.herokuapp.com/api/auth/sign_out';

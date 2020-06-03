@@ -1,0 +1,172 @@
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--<link href="style.css" rel="stylesheet" type="text/css" />-->
+<style>
+
+#sidebar-wrapper{
+	height:100%;
+	max-width:180px;
+	position:fixed;
+}
+textarea {
+  resize: none !important;
+}
+#chitiet{
+	border:none;
+	overflow-wrap: break-word;
+}
+#main{
+	
+	margin: 0px 50px 50px 230px ;
+}
+.dropdown-menu{
+	left:-75px !important;
+}
+html {
+  scroll-behavior: smooth;
+}
+.content {
+		background-color: #FFF;
+		margin:30px 3% 50px 0px;
+		padding:40px 5% 70px 40px;
+	}
+</style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<?php require "header.html"; ?>
+<div id="main" class="container">
+
+<ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#newpa #newinj #inj">Tư vấn của bệnh nhân mới</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#newinj">Tư vấn mới</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#inj">Tư vấn cũ</a>
+    </li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div id="newpa" class="container tab-pane active"><br>
+      <h3> Danh sách tư vấn của bệnh nhân mới</h3>
+	<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Họ tên</th>
+        <th>Mô tả</th>
+        <th>gì đó</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Bệnh nhân 01</td>
+        <td>Đau bụng</td>
+        <td>
+        	<a href="tuvan.php" class=" btn btn-success" >Chấp nhận</a>
+            <a href="tuvan.php" class="btn btn-danger" >Từ chối</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+    </div>
+    <div id="newinj" class="container tab-pane fade"><br>
+      <h3> Danh sách tư vấn mới</h3>
+	<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Họ tên</th>
+        <th>Mô tả</th>
+        <th>gì đó</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Bệnh nhân 01</td>
+        <td>Đau bụng</td>
+        <td><a href="tuvan.php" class="nav-link" >Trả lời tư vấn </a></td>
+      </tr>
+    </tbody>
+  </table>
+    </div>
+    <div id="inj" class="container tab-pane fade"><br>
+        <h3> Danh sách tư vấn cũ</h3>
+	<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Họ tên</th>
+        <th>Mô tả</th>
+        <th>gì đó</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Bệnh nhân 01</td>
+        <td>Đau bụng</td>
+        <td><a href="tuvan.php" class="nav-link" >Trao đổi thêm </a></td>
+      </tr>
+    </tbody>
+  </table>
+    </div>
+  </div>
+</div>
+	<!--<h3> Danh sách tư vấn của bệnh nhân mới</h3>
+	<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Họ tên</th>
+        <th>Mô tả</th>
+        <th>gì đó</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Bệnh nhân 01</td>
+        <td>Đau bụng</td>
+        <td><a href="tuvan.php" class="nav-link nav-danger" >Chấp nhận</a></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3> Danh sách tư vấn mới</h3>
+	<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Họ tên</th>
+        <th>Mô tả</th>
+        <th>gì đó</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Bệnh nhân 01</td>
+        <td>Đau bụng</td>
+        <td><a href="tuvan.php" class="nav-link" >Trả lời tư vấn </a></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3> Danh sách tư vấn cũ</h3>
+	<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Họ tên</th>
+        <th>Mô tả</th>
+        <th>gì đó</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Bệnh nhân 01</td>
+        <td>Đau bụng</td>
+        <td><a href="tuvan.php" class="nav-link" >Trao đổi thêm </a></td>
+      </tr>
+    </tbody>
+  </table>-->
+</div>
+</body>
+</html>

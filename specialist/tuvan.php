@@ -67,12 +67,18 @@
                     <div id="chitiet" style="width:90%">
                     	<?php echo $arrInj['content']; ?>
                     </div>
-                    <a href="#reply" style=" position:absolute; bottom:-50px; right:0;" class=" btn btn-primary" >Trả lời tư vấn</a>
-                      <a href="#lstv" ><a  data-toggle="collapse" href="#dstv" style=" position:absolute; bottom:-50px; left:200px;" class=" btn btn-primary" >Lịch sử tư vấn</a></a>
+                    <div style=" position:absolute; bottom:-50px; right:0;" >
+                    	<a href="#messcontain"  class=" btn btn-primary" >Trao đổi thêm</a>
+                        <a href="#reply"  class=" btn btn-primary" >Trả lời tư vấn</a>
+                    </div>
                  </div>
             </div>
         </div>
-
+<?php 	if (!$arrResp['type']) $a='medicalRecords';
+	else  $a='dietRecords';
+	if ($arrResp['patient']['status']>4 ) 
+	 {
+	?>
 <div  id="lstv">
 
 		<div class="card">
@@ -87,8 +93,7 @@
                 <div id="accordion">
 <?php
 	$i=0;
-	if (!$arrResp['type']) $a='medicalRecords';
-	else  $a='dietRecords';
+	if(empty($arrResp[$a]) ) echo "Yêu cầu này chưa có tư vấn nào";
 	foreach($arrResp[$a] as $value){ $i++;?>
   
                   <div class="card">
@@ -121,13 +126,14 @@
                       </div>
                     </div>
                   </div>    
-	<?php };
-?>      
+      	<?php }; ?>
+
 			    
               </div>
             </div>
           </div>
 </div> </div>
+	<?php }; ?>
 
 		<form action="tuvan.php" method="post" class="content" name="yctuvan">
         <h3 id="reply" class=" show fade"> Nhập trả lời tư vấn </h3><br />

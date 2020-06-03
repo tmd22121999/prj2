@@ -61,32 +61,77 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>đăng ký</title>
-<link href="style.css" rel="stylesheet" type="text/css" /><link href="ver.css" rel="stylesheet" type="text/css" />
+<!--<link href="style.css" rel="stylesheet" type="text/css" /><link href="ver.css" rel="stylesheet" type="text/css" />
+-->
+<style>input[type=text],input[type=password] {
+  padding: 12px 20px;
+  margin: 8px 0;
+  width:35%;
+  display: inline-block;
+  border-style: none none solid none;
+  border-width:: 1px ;
+  border-color:#ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input,select{
+    pointer-events: auto!important;
+	display:inline-block;
+}
+
+#edit{
+	float:right;
+	background-color: #4CAF50;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+#submit1{
+	display:none;
+}
+.submit {
+	width:44%; 
+	background-color: #4CAF50;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font:em;
+	text-align:center;
+	display:inline;
+}
+
+.submit:hover {
+  background-color: #45a049;
+}
+</style>
 </head>
 
 <body>
+<?php require "header.html"; ?>
+<p>.</p></br>
 	<div id="main">
-	<div>Đăng ký</div>
+	<div><h2>Đăng ký</h2></div>
     <form action="" method="post" name="reg">
-    	<div><span>Họ và tên</span>
+
+<!--        <div>Email</div>-->       	 	
+<input type="text" name="email" placeholder="Email" id="email" required />
+<!--        <div>Số điện thoại</div>
+-->        	<input type="text" name="phone" placeholder="Số điện thoại" id="phone"  required />
+    	<div><!--<span>Họ và tên</span>-->
         	<input type="text" name="name" placeholder="Họ và tên" id="name" required />
         </div>
-        <div>Email</div>
-       	 	<input type="text" name="email" placeholder="Email" id="email" required />
-        <div>Số điện thoại</div>
-        	<input type="text" name="phone" placeholder="Số điện thoại" id="phone"  required />
-        <div>Mật khẩu</div>
-        <input type="password" name="pass" id="pass" required />
-        <div><span>Bạn là</span>
-            <select name="role" >
-                <option value="0">Đa khoa</option>
-                <option value="1">Chuyên khoa</option>
-                <option value="2">Dinh dưỡng</option>
-                <option value="3">Điều phối</option>
-                <option value="4">Bệnh nhân</option>
-            </select>
+<!--        <div>Mật khẩu</div>
+-->        <input type="password" name="pass" id="pass"  placeholder="Mật khẩu "required />
+        <div>
         <span>Giới tính</span>
-            <select name="sex" >
+            <select  class="custom-select" name="sex" >
                 <option value="0">Nam</option>
                 <option value="1">Nữ</option>
                 <option value="2">Khác</option>
@@ -94,9 +139,8 @@
         </div>
         <div>Ngày sinh</div> <input type="text" name="birth" placeholder="dd/mm/yyyy" id="birth" required />
          <div id="err"><?php echo $error['pass']; ?></div>
-        <input type="submit"  name="submit" id="button" value="Đăng ký"  />
+        <input type="submit" class=" btn btn-success"  name="submit" id="button" value="Đăng ký"  />
     </form>
-    <div> Bạn đã có tài khoản?</div><div> <a href="login.php">Nhấn vào đây để đăng nhập</a></div>
     </div>
 </body>
 </html>

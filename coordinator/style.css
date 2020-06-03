@@ -134,8 +134,8 @@ input[type=text],input[type=password] {
   box-sizing: border-box;
 }
 
-.iput{
-    pointer-events: none;
+input{
+    pointer-events: auto!important;
 	display:inline-block;
 }
 

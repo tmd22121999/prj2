@@ -56,7 +56,7 @@
 		echo "<td>". $value['age']. "</td>";
      //   echo "<td>". $value['name']. "</td>";
          echo " <td>";
-       echo 	"<a href=\"#\" class=\" btn btn-success\" >Xem chi tiết bệnh nhân</a>";
+       echo 	"<a href=\"benhnhan.php?id=".$value['id']."\" class=\" btn btn-success\" >Xem chi tiết bệnh nhân</a>";
       // echo     "<a href=\"tuvan.php\" class=\"btn btn-danger\" >Từ chối</a>";
        echo " </td>	";
 	   

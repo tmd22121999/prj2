@@ -27,7 +27,7 @@ if (isset($_GET['logout'])) {
    		session_unset();
           	session_destroy();
   	}
-	$url='https://fathomless-savannah-38522.herokuapp.com/api/user';
+	$url='https://fathomless-savannah-38522.herokuapp.com/api/patients/'.$_GET['id'];
 	$curl = curl_init();
 	curl_setopt_array($curl, array(
 		CURLOPT_RETURNTRANSFER => 1,
@@ -62,45 +62,45 @@ if (isset($_GET['logout'])) {
 <!--<link href="style.css" rel="stylesheet" type="text/css" />-->
 <title>Thông tin cá nhân</title>
 <script>
-	function edit(){
-		var x = document.getElementsByTagName("input");
-		var i;
-		for (i = 0; i < x.length; i++) {
-			x[i].style['pointer-events'] = 'auto';
-		}
-		var x = document.getElementsByTagName("select");
-		for (i = 0; i < x.length; i++) {
-			x[i].style['pointer-events'] = 'auto';
-		}
-		var x = document.getElementsByTagName("label");
-		for (i = 0; i < x.length; i++) {
-			x[i].style['pointer-events'] = 'auto';
-		}
-		x=document.getElementById("edit");
-		x.style.display="none";
-		x=document.getElementById("submit1");
-		x.style.display="block";
-	};
-	function cance(){
-		var x = document.getElementsByTagName("input");
-		var i;
-		for (i = 0; i < x.length; i++) {
-			x[i].style['pointer-events'] = 'none';
-		}
-		var x = document.getElementsByTagName("select");
-		for (i = 0; i < x.length; i++) {
-			x[i].style['pointer-events'] = 'none';
-		}
-		var x = document.getElementsByTagName("label");
-		for (i = 0; i < x.length; i++) {
-			x[i].style['pointer-events'] = 'none';
-		}
-		x=document.getElementById("edit");
-		x.style.display="block";
-		x=document.getElementById("submit1");
-		x.style.display="none";
-		document.getElementById("myForm").reset();
-	};
+//	function edit(){
+//		var x = document.getElementsByTagName("input");
+//		var i;
+//		for (i = 0; i < x.length; i++) {
+//			x[i].style['pointer-events'] = 'auto';
+//		}
+//		var x = document.getElementsByTagName("select");
+//		for (i = 0; i < x.length; i++) {
+//			x[i].style['pointer-events'] = 'auto';
+//		}
+//		var x = document.getElementsByTagName("label");
+//		for (i = 0; i < x.length; i++) {
+//			x[i].style['pointer-events'] = 'auto';
+//		}
+//		x=document.getElementById("edit");
+//		x.style.display="none";
+//		x=document.getElementById("submit1");
+//		x.style.display="block";
+//	};
+//	function cance(){
+//		var x = document.getElementsByTagName("input");
+//		var i;
+//		for (i = 0; i < x.length; i++) {
+//			x[i].style['pointer-events'] = 'none';
+//		}
+//		var x = document.getElementsByTagName("select");
+//		for (i = 0; i < x.length; i++) {
+//			x[i].style['pointer-events'] = 'none';
+//		}
+//		var x = document.getElementsByTagName("label");
+//		for (i = 0; i < x.length; i++) {
+//			x[i].style['pointer-events'] = 'none';
+//		}
+//		x=document.getElementById("edit");
+//		x.style.display="block";
+//		x=document.getElementById("submit1");
+//		x.style.display="none";
+//		document.getElementById("myForm").reset();
+//	};
 
 </script>
 </head>
@@ -109,11 +109,11 @@ if (isset($_GET['logout'])) {
 <?php require "header.html"; ?>
     <p>.</p><br/>
     <div id="main" class="content">
-    <h1>THÔNG TIN CÁ NHÂN</h1>
+    <h1>THÔNG TIN CÁ NHÂN BỆNH NHÂN</h1>
    
     <div id="form"> 
-    	<div class=" btn btn-primary"  id="edit" onclick="edit();" >Chỉnh sửa</div>
-        <form id="myForm" style="	margin: 50px 100px;;" action="" method="post" name="reg">
+<!--    	<div class=" btn btn-primary"  id="edit" onclick="edit();" >Chỉnh sửa</div>-->       
+ <form id="myForm" style="	margin: 50px 100px;;" action="" method="post" name="reg">
            <img  src="  <?php echo $avatar ?>" alt="Avatar" height="250" width="250">
             
             <div class="form-group">
@@ -167,11 +167,11 @@ if (isset($_GET['logout'])) {
             <!--<div><span>Ngày sinh</span> <input class="iput" type="text" name="birth" placeholder="dd/mm/yyyy" id="birth"  value="<?php echo $bd;?>"  required /></div>-->
              <div><span>Địa chỉ</span> <input class="iput" type="text" name="adress" placeholder="Địa chỉ" value="không có :v" id="adress"   /></div>
              <div>Ngày tạo <?php echo $creatAt[2] . "/". $creatAt[1] ."/" . $creatAt[0]  ?>
-            <div id="submit1">
+<!--            <div id="submit1">
                   <button style="width:40%;" type="submit" class="btn btn-success"  type="submit"  name="submit" id="save" >LƯU LẠI</button>
                    <button style="width:40%;" type="button" class="btn btn-danger" onclick="cance();">HỦY BỎ</button>
             </div>
-        </form>
+-->        </form>
     </div>
     </div>
 </body>

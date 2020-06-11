@@ -1,0 +1,166 @@
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--<link href="style.css" rel="stylesheet" type="text/css" />-->
+<style>
+
+#sidebar-wrapper{
+	height:100%;
+	max-width:180px;
+	position:fixed;
+}
+textarea {
+  resize: none !important;
+}
+#chitiet{
+	border:none;
+	overflow-wrap: break-word;
+}
+#main{
+	
+	margin: 0px 50px 50px 230px ;
+}
+.dropdown-menu{
+	left:-75px !important;
+}
+html {
+  scroll-behavior: smooth;
+}
+.content {
+		background-color: #FFF;
+		margin:30px 3% 50px 0px;
+		padding:40px 5% 70px 40px;
+	}
+input , select,label{
+    pointer-events: none;
+}
+#submit1{
+	display:none;
+}
+
+#edit{
+	float:right;
+	cursor: pointer;
+}
+/* Paste this css to your style sheet file or under head tag */
+/* This only works with JavaScript, 
+if it's not present, don't show loader */
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(https://smallenvelop.com/wp-content/uploads/2014/08/Preloader_11.gif) center no-repeat #fff;
+}
+@media only screen and (max-width: 600px) {
+  #sidebar-wrapper {
+    max-width:20%;
+  }
+#main{	
+   margin: 0px 50px 50px 50px ;
+}
+#myForm{	
+   margin: 50px 20px !important;
+}
+}
+/*mess*/
+.mcontainer {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  width:80%;
+}
+
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+  margin-left: 20%;
+}
+
+.mcontainer::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.mcontainer img {
+  float: left;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.mcontainer img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+.time-left {
+  float: left;
+  color: #999;
+}
+#mess{
+	max-height:90%;
+	overflow-y:auto;
+	margin:50px;
+}
+#messinput{
+	margin-left:50px;
+}
+</style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+
+		
+    <nav id="sidebar-wrapper" class="navbar bg-light fixed">
+		<ul id="ne-bar" class="navbar-nav">
+ 			 <li  class="nav-brand"><a class="nav-link" href="record.php">Danh sách yêu cầu tư vấn</a></li>
+		 	<li  class="nav-brand"><a class="nav-link" href="record.php">Lịch sử tư vấn</a></li>
+ 			<li class="nav-item"><a class="nav-link" href="patient.php">Danh sách bệnh nhân</a></li>
+  			<li class="nav-item"><a class="nav-link" href="líchuckhoe.php">Lập lịch theo dõi thông số sức khỏe</a></li>
+		</ul>
+    </nav>
+		<nav id="hder" class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+ 			 <a class="navbar-brand  mr-auto" href="index.php">Trang chủ</a>
+        <ul    class="navbar-nav ">
+			<li class="nav-item ">
+				<a class="nav-link" href="nofic.php">Thông báo</a>
+			</li>
+    
+        <!-- Dropdown -->
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbardrop" data-toggle="dropdown">
+				Tài khoản
+				</a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="acount.php">Thông tin cá nhân</a>
+                    <a class="dropdown-item" href="patient.php">Quản lý bệnh nhân</a>
+                    <a class="dropdown-item" href="?logout=true">đăng xuất </a>
+          		</div>
+        	</li>
+		</ul>
+            
+            
+		</nav>
+   
+    
+</body>
+</html>

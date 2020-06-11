@@ -7,7 +7,7 @@
 		// Animate loader off screen
 		$(".se-pre-con").fadeOut("slow");;
 	});
-     function filter(){
+    function filter(){
 		  var kbcheck = document.getElementById("type0");
 		  var ddcheck = document.getElementById("type1");
 		  if (kbcheck.checked == true){
@@ -37,7 +37,7 @@
 				}	
 		  }
 	};
-   </script>
+</script>
     <div class="se-pre-con"></div>
 
 <?php 
@@ -46,7 +46,7 @@
 	$page=1;
 	if(isset($_GET['page']) ) $page=$_GET['page'];
 	echo $uid;
-	$url='https://fathomless-savannah-38522.herokuapp.com/api/inquiries?page=' .$page .'&size=10';
+	$url='https://fathomless-savannah-38522.herokuapp.com/api/inquiries?assigned=true&page=' .$page .'&size=10';
 	$curl = curl_init();
 	curl_setopt_array($curl, array(
 		CURLOPT_RETURNTRANSFER => 1,
@@ -67,8 +67,7 @@
 	$arrInj=$arrResp['content'];
 	//print_r($arrResp);
 	curl_close($curl);
-		$typeInj = array("Khám bệnh","Dinh dưỡng","","bg-light");
-
+	$typeInj = array("Khám bệnh","Dinh dưỡng","","bg-light");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -92,7 +91,7 @@ input {
 	<li class="nav-item">
       <a class="nav-link active" data-toggle="tab" href="#all">Tất cả yêu cầu tư vấn</a>
     </li>
-<!--    <li class="nav-item">
+    <li class="nav-item">
       <a class="nav-link" data-toggle="tab" href="#newpa">Bệnh nhân chưa được gán</a>
     </li>
     <li class="nav-item">
@@ -100,19 +99,22 @@ input {
     </li>
     <li class="nav-item">
       <a class="nav-link" data-toggle="tab" href="#inj">Yêu cầu tư vấn cũ</a>
-    </li>-->
+    </li>
   </ul>
-<h6>Loại yêu cầu tư vấn: </h6><input id="type0" checked="checked" name="filterA" type="checkbox" onClick="filter()" value="0" /> <span> Khám bệnh</span><input  id="type1" name="filterB" checked="checked" type="checkbox" onClick="filter()" value="0" /> <span> Dinh dưỡng</span>
+
+<h6>Loại yêu cầu tư vấn: </h6><input id="type0" checked="checked" name="filterA" type="checkbox" onclick="filter()" value="0" /> <span> Khám bệnh</span><input  id="type1" name="filterB" checked="checked" type="checkbox" onclick="filter()" value="0" /> <span> Dinh dưỡng</span>
 
   <!-- Tab panes -->
   <div class="tab-content">
     <div id="newpa" class="container tab-pane fade"><br>
-      <h3> Danh sách tư vấn của bệnh nhân mới chưa được gán</h3>
+      <h3>Yêu cầu gán bệnh nhân</h3>
+      <p>Danh sách yêu cầu tư vấn của bệnh nhân mới chưa được gán cho đa khoa</p>
 	<table class="table table-hover">
     <thead>
       <tr>
       	<th>ID</th>
         <th>Họ tên</th>
+        <th>Loại yêu cầu</th>
         <th>Mô tả</th>
         <th>gì đó</th>
       </tr>
@@ -123,10 +125,11 @@ input {
 	$i=0;
 	 foreach ($arrInj as $value) {
 		 
-		 if($value['patient']['status']<4){
-		 echo "<tr>";
+		 if($value['patient']['status']%2){
+		 echo "<tr class='type".$value['type']." ". $typeInj[$value['type']+2]."'>";
       	echo "<td>". $value['id']. "</td>";
       	echo "<td>". $value['patient']['name']. "</td>";
+		echo "<td>".$typeInj[$value['type']]."</td>";
         echo "<td>". $value['content']. "</td>";
          echo " <td>";
        echo 	"<a href=\"tuvan.php?id=". $value['id'] ."\" class=\" btn btn-success\" >Chấp nhận</a>";
@@ -152,12 +155,14 @@ input {
   </table>
     </div>
     <div id="newinj" class="container tab-pane fade"><br>
-      <h3> Danh sách tư vấn mới</h3>
+      <h3> Danh sách yêu cầu tư vấn mới</h3>
+      <p>Danh sách yêu cầu mới của bệnh nhân cần được gán cho cấp dưới: bác sĩ chuyên khoa hoặc bác sĩ dinh dưỡng</p>
 	<table class="table table-hover">
     <thead>
       <tr>
       	<th>ID</th>
         <th>Họ tên</th>
+        <th>Loại yêu cầu</th>
         <th>Mô tả</th>
         <th>gì đó</th>
       </tr>
@@ -168,13 +173,14 @@ input {
 	$i=0;
 	 foreach ($arrInj as $value) {
 		 $mr=$value['medicalRecords'];
-		 if(($value['patient']['status']>4) &( empty($mr) ) ){
-		 echo "<tr>";
+		 if(($value['patient']['status']==2) &( empty($mr) ) ){
+		 echo "<tr class='type".$value['type']." ". $typeInj[$value['type']+2]."'>";
       	echo "<td>". $value['id']. "</td>";
       	echo "<td>". $value['patient']['name']. "</td>";
+		echo "<td>".$typeInj[$value['type']]."</td>";
         echo "<td>". $value['content']. "</td>";
          echo " <td>";
-       echo 	"<a href=\"tuvan.php?id=". $value['id'] ."\" class=\" btn btn-success\" >Trả lời tư vấn</p>";
+       echo 	"<a href=\"tuvan.php?id=". $value['id'] ."\" class=\" btn btn-success\" >Gán cho cấp dưới</p>";
        echo " </td>	";
 	   
 	   echo "</tr>";
@@ -194,12 +200,14 @@ input {
   </table>
     </div>
     <div id="inj" class="container tab-pane fade"><br>
-        <h3> Danh sách tư vấn cũ</h3>
+        <h3> Danh sách yêu cầu tư vấn cũ</h3>
+        <p>Danh sách yêu cầu tư vấn của bệnh nhân đã được gán cho cấp dưới</p>
 	<table class="table table-hover">
     <thead>
       <tr>
       	<th>ID</th>
         <th>Họ tên</th>
+        <th>Loại yêu cầu</th>
         <th>Mô tả</th>
         <th>gì đó</th>
       </tr>
@@ -209,10 +217,11 @@ input {
     <?php
 	 foreach ($arrInj as $value) {
 		 $mr=$value['medicalRecords'];
-		 if(($value['patient']['status']>4) &( !empty($mr) ) ){
-		 echo "<tr>";
+		 if($value['patient']['status']>4 ){
+		 echo "<tr class='type".$value['type']." ". $typeInj[$value['type']+2]."'>";
       	echo "<td>". $value['id']. "</td>";
       	echo "<td>". $value['patient']['name']. "</td>";
+		echo "<td>".$typeInj[$value['type']]."</td>";
         echo "<td>". $value['content']. "</td>";
          echo " <td>";
        echo 	"<a href=\"tuvan.php?id=". $value['id'] ."\" class=\" btn btn-warning\" >Trao đổi thêm</a>";
@@ -240,6 +249,7 @@ input {
       <tr>
         <th>ID</th>
         <th>Bệnh nhân</th>
+        <th>Loại yêu cầu</th>
         <th>Mô tả</th>
         <th>gì đó</th>
       </tr>

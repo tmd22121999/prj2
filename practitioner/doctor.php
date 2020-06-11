@@ -2,10 +2,7 @@
 	session_start();
 	$uid=$_SESSION["UID"];
 	echo $uid;
-	$page=1;
-	if(isset($_GET['page']) ) $page=$_GET['page'];
-
-	$url="https://fathomless-savannah-38522.herokuapp.com/api/patients?page=$page&size=10";
+	 $url="https://fathomless-savannah-38522.herokuapp.com/api/doctors?page=1&size=10";
 	$curl = curl_init();
 	curl_setopt_array($curl, array(
 		CURLOPT_RETURNTRANSFER => 1,
@@ -22,7 +19,7 @@
 	curl_setopt($curl,CURLOPT_HTTPHEADER,$headers);
 	$resp = curl_exec($curl);
 	$arrResp = json_decode($resp,true);
-	//print_r($resp);
+	//print_r($arrResp);
 	$arrInj=$arrResp['content'];
 	//print_r($arrResp);
 	curl_close($curl);
@@ -32,14 +29,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Danh sách bệnh nhân</title>
+<title>Danh sách bác sĩ</title>
 </head>
 <body>
-<?php require "header.html"; ?>
+<?php require "../specialist/header.html"; ?>
 <p>.</p><br/>
 <div id="main" class="container content">
-	<div  class="mr-auto"> <h2>Danh sách bênh nhân</h2></div>
-        <a href="reg.php" class=" btn btn-success" >Đăng ký tài khoản bệnh nhân mới</a>
+	<div> <h2>Danh sách bác sĩ</h2></div>
 	<table class="table table-hover">
     <thead>
       <tr>
@@ -47,6 +43,7 @@
          <th>Avatar</th>
         <th>Họ và tên</th>
         <th>Tuổi</th>
+        <th>Chức năng</th>
         <th>gì đó</th>
       </tr>
     </thead>
@@ -58,9 +55,9 @@
       	echo "<td><img src=\"". $value['avatar']. "\" alt=\"Avatar\" height=\"150\" width=\"150\"></td>";
         echo "<td>". $value['name']. "</td>";
 		echo "<td>". $value['age']. "</td>";
-     //   echo "<td>". $value['name']. "</td>";
+        echo "<td>". $value['role']. "</td>";
          echo " <td>";
-       echo 	"<a href=\"benhnhan.php?id=".$value['id']."\" class=\" btn btn-info\" >Xem chi tiết bệnh nhân</a>";
+       echo 	"<a href=\"#?id=".$value['id']."\" class=\" btn btn-info\" >Xem chi tiết bác sĩ</a>";
       // echo     "<a href=\"tuvan.php\" class=\"btn btn-danger\" >Từ chối</a>";
        echo " </td>	";
 	   
@@ -69,14 +66,16 @@
 		?>
     </tbody>
   </table>
+  
+  
     	<ul class="pagination  justify-content-center" style="margin:20px 0">
-      <li class="page-item  <?php if($arrResp['first']) echo 'disabled' ;?>"><a class="page-link" href="?page=<?php echo $page-1; ?>">Previous</a></li>
+      <li class="page-item  <?php if($arrResp['first']) echo 'disabled' ;?>"><a class="page-link" href="../specialist/?page=<?php echo $page-1; ?>">Previous</a></li>
       <?php for($i = 1; $i <= $arrResp['totalPages']; $i++) { ?>
-      <li class="page-item  <?php if($i==$page) echo 'active' ;?> "><a class="page-link" href="?page=<?php echo $i .' ">'.$i; ?></a></li>
+      <li class="page-item  <?php if($i==$page) echo 'active' ;?> "><a class="page-link" href="../specialist/?page=<?php echo $i .' ">'.$i; ?>&lt;/a&gt;&lt;/li&gt;
 	  <?php 
 	  	};
 	  ?>
-      <li class="page-item <?php if($arrResp['last']) echo 'disabled' ;?> "><a class="page-link" href="?page=<?php echo $page+1; ?>">Next</a></li>
+      &lt;li class="page-item <?php if($arrResp['last']) echo 'disabled' ;?> "><a class="page-link" href="?page=<?php echo $page+1; ?>">Next</a></li>
 	</ul>
 </div>
 </body>

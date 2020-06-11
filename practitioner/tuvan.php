@@ -19,7 +19,7 @@
 	curl_setopt($curl,CURLOPT_HTTPHEADER,$headers);
 	$resp = curl_exec($curl);
 	$arrResp = json_decode($resp,true);
-	//print_r($arrResp);
+	 //print_r($resp);
 	$arrInj=$arrResp;
 	$date=$arrInj['date'];
 	curl_close($curl);

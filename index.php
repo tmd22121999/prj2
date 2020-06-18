@@ -112,7 +112,7 @@ if it's not present, don't show loader */
   		case "PRACTITIONER":
     		//header("Location: record.php");
 			echo '<script>';
-			echo "window.location = 'record.php';";
+			echo "window.location = 'practitioner';";
    			echo '</script>';		
 			break;
 		case "DIETITIAN":

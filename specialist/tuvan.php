@@ -1,8 +1,10 @@
 <?php 
 	session_start();
 	$uid=$_SESSION["UID"];
-	echo $uid;
-	$url='https://fathomless-savannah-38522.herokuapp.com/api/inquiries/'.$_GET['id'];
+	echo $uid; 
+	$_SESSION['tvid']=$_GET['id'];
+	$tvid=$_SESSION['tvid']; 
+	$url='https://fathomless-savannah-38522.herokuapp.com/api/inquiries/'.$tvid;
 	$curl = curl_init();
 	curl_setopt_array($curl, array(
 		CURLOPT_RETURNTRANSFER => 1,
@@ -28,6 +30,71 @@
 	echo "type : " .$type;
 	$pantient=$arrInj['patient'];
 	echo $pantient['name'];
+	
+	// Trao đổi với bệnh nhân
+	
+	if (isset($_POST['reply']) & isset($_POST['replyText'])) 
+	{
+		
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, 'https://fathomless-savannah-38522.herokuapp.com/api/replies');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS,"{ \"inquiry_id\": $tvid, \"reply\": \"$replyMess\"}");
+		
+		$headers = array();
+		$headers[] = 'Accept: */*';
+		$headers[] = 'Authorization: '.$uid;
+		$headers[] = 'Content-Type: application/json';
+
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+		
+		$resultReply = curl_exec($ch);
+		 $newMess=json_decode($resultReply,true);
+		if (curl_errno($ch)) {
+			echo 'Error:' . curl_error($ch);
+		}
+		else {//print_r($resultReply);
+			$arrResp['replies'][]=$newMess;
+		}
+		curl_close($ch);
+	}
+	
+	// Trả lời tư vấn
+	
+
+	
+		if (isset($_POST['send']) ) 
+	{
+			$myObj->diagnose = $_POST['chuandoan'];
+			$myObj->inquiry_id = $tvid;
+			$myObj->note = $_POST['ketluan'];
+			$myObj->prescription = $_POST['kedon'];
+			
+			$myJSON = json_encode($myObj);
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, 'https://fathomless-savannah-38522.herokuapp.com/api/records');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS,$myJSON);
+		
+		$headers = array();
+		$headers[] = 'Accept: */*';
+		$headers[] = 'Authorization: '.$uid;
+		$headers[] = 'Content-Type: application/json';
+
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+		
+		$resultReply = curl_exec($ch);
+		 $newRecord=json_decode($resultReply,true);
+		if (curl_errno($ch)) {
+			echo 'Error:' . curl_error($ch);
+		}
+		//print_r($resultReply);
+		curl_close($ch);
+	}
+	
+	//print_r($arrResp['replies']);
 ?>
 
 
@@ -135,7 +202,7 @@
 </div> </div>
 	<?php }; ?>
 
-		<form action="tuvan.php" method="post" class="content" name="yctuvan">
+		<form action="" method="post" class="content" name="yctuvan">
         <h3 id="reply" class=" show fade"> Nhập trả lời tư vấn </h3><br />
           <div class="row">
   			<div  id="kedon" class="col-md"><div class="form-group">
@@ -153,9 +220,9 @@
 		</div>
         <div class="form-group">
           <label for="ketluan"><h5>kết luận:</h5></label>
-          <textarea name="keluan" class="form-control" rows="4" id="ketluan"></textarea>
+          <textarea name="ketluan" class="form-control" rows="4" id="ketluan"></textarea>
         </div>
-        <input value="Gửi cho bệnh nhân"  class=" btn btn-success " name="send" type="submit">
+         <button type="submit" value="Gửi cho bệnh nhân"  class=" btn btn-success " name="send">Gửi cho bệnh nhân</button>
       </form>
       
       
@@ -185,11 +252,11 @@
           
           </div>-->
           
-          <form id="messinput" action="" method="post"  class="form-inline " name="contact">
+          <form id="messinput" action="" method="post"  class="form-inline " name="freply">
                         <div class="form-group"  style="width:90%;">
-                        <input style="pointer-events:auto; width:100%;" type="text" class="form-control mb-2 mr-sm-2" placeholder="Nhập tin nhắn" id="tinnhan">
+                        <input style="pointer-events:auto; width:100%;" name="replyText" type="text" class="form-control mb-2 mr-sm-2" placeholder="Nhập tin nhắn" id="tinnhan" required="required">
                       </div>
-                      <button type="submit" class="btn btn-primary mb-2">Gửi</button>
+                      <button type="submit" name="reply" class="btn btn-primary mb-2">Gửi</button>
           </form>
     </div>
       

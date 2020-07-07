@@ -44,7 +44,7 @@ if (isset($_GET['logout'])) {
 	curl_setopt($curl,CURLOPT_HTTPHEADER,$headers);
 	$resp = curl_exec($curl);
 	$arrResp = json_decode($resp,true);
-	//print_r($arrResp);
+	 //print_r($resp);
 	$name=$arrResp['name'];
 	$email=$arrResp['email'];
 	$avatar=$arrResp['avatar'];
@@ -53,14 +53,16 @@ if (isset($_GET['logout'])) {
 	$bd=$arrResp['dateOfBirth'];
 	$phone=$arrResp['phoneNumber'];
 	$creatAt=$arrResp['createdAt'] ;
+	$addr=$arrResp['address'] ;
 	curl_close($curl);
+	$arrInq=$arrResp['inquiries'];
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!--<link href="style.css" rel="stylesheet" type="text/css" />-->
-<title>Thông tin cá nhân</title>
+<title>Thông tin bệnh nhân</title>
 <script>
 //	function edit(){
 //		var x = document.getElementsByTagName("input");
@@ -119,32 +121,26 @@ if (isset($_GET['logout'])) {
             <div class="form-group">
                 <label for="name">Họ và tên :</label>
                 <input   type="text" class="form-control" placeholder="Nhập họ và tên" id="name" value="<?php echo $name;?>"required/>
-              </div>
+      </div>
   			<!--<div><span>Họ và tên</span>
                 <input class="iput" type="text" name="name" placeholder="Họ và tên" id="name" value="" required />
             </div>-->
             <div class="form-group">
                 <label for="email">Email :</label>
                 <input type="text" class="form-control" placeholder="Nhập email" id="email" value="<?php echo $email;?>"required/>
-              </div>
-              <div class="form-group">
+      </div>
+      <div class="form-group">
                 <label for="phone">Số điện thoại :</label>
                 <input type="text" class="form-control" placeholder="Nhập sđt" id="phone" value="<?php echo $phone;?>" required/>
               </div>
 <!--            <div>
                 <span>Email</span>
-                    <input class="iput" type="text" name="email" placeholder="Email" id="email"   value="<?php echo $email;?>"  required />
+                    <input class="iput" type="text" name="email" placeholder="Email" id="email"   value="<?php //echo $email;?>"  required />
                 <span>Số điện thoại</span>
-                    <input class="iput" type="text" name="phone" placeholder="Số điện thoại" id="phone"  value="<?php echo $phone;?>"   required />
+                    <input class="iput" type="text" name="phone" placeholder="Số điện thoại" id="phone"  value="<?php //echo $phone;?>"   required />
              </div>-->
-            <div ><span style="height:50px;">Chức vụ : bác sĩ chuyên khoa</span>
-                <!--<select class="iput" name="role" >
-                    <option value="0">Đa khoa</option>
-                    <option value="1">Chuyên khoa</option>
-                    <option value="2">Dinh dưỡng</option>
-                    <option value="3">Điều phối</option>
-                    <option value="4">Bệnh nhân</option>
-                </select>-->
+  
+  
             <div class="form-group">
               <label for="gender">Giới tính:</label>
               <select class="form-control" id="gender">
@@ -152,26 +148,64 @@ if (isset($_GET['logout'])) {
                  <option <?php if($gender == '1') echo"selected"; ?>   value="1">Nữ</option>
                  <option <?php if($gender == '2') echo"selected"; ?>   value="2">Khác</option>
               </select>
-            </div>
+      </div>
             <!--<span >Giới tính</span>
                 <select class="iput" name="sex" >
                     <option  value="0">Nam</option>
                     <option   value="1">Nữ</option>
                     <option    value="2">Khác</option>
                 </select>-->
-            </div>
+
             <div class="form-group">
                 <label for="bd">Ngày sinh :</label>
                 <input type="text" class="form-control" placeholder="Nhập ngày sinh" id="bd" value="<?php echo $bd;?>" required/>
-              </div>
+      </div>
             <!--<div><span>Ngày sinh</span> <input class="iput" type="text" name="birth" placeholder="dd/mm/yyyy" id="birth"  value="<?php echo $bd;?>"  required /></div>-->
-             <div><span>Địa chỉ</span> <input class="iput" type="text" name="adress" placeholder="Địa chỉ" value="không có :v" id="adress"   /></div>
+             <div class="form-group">
+                <label for="bd">Địa chỉ :</label>
+                <input type="text" class="form-control" placeholder="Nhập địa chỉ" id="addr" value="<?php echo $addr;?>" required/>
+      </div>
              <div>Ngày tạo <?php echo $creatAt[2] . "/". $creatAt[1] ."/" . $creatAt[0]  ?>
 <!--            <div id="submit1">
                   <button style="width:40%;" type="submit" class="btn btn-success"  type="submit"  name="submit" id="save" >LƯU LẠI</button>
                    <button style="width:40%;" type="button" class="btn btn-danger" onclick="cance();">HỦY BỎ</button>
             </div>
 -->        </form>
+
+
+<div class="container tab-pane active conent"><br>
+      <h1>Danh sách lịch sử yêu cầu tư vấn của bệnh nhân</h1>
+	<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Bệnh nhân</th>
+        <th>Mô tả</th>
+        <th>gì đó</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <?php
+	 foreach ($arrInq as $value) {
+		 echo "<tr>";
+      	echo "<td>". $value['id']. "</td>";
+      	echo "<td>". $value['patient']['name']. "</td>";
+        echo "<td>". $value['content']. "</td>";
+         echo " <td>";
+       echo 	"<a href=\"tuvan.php?id=". $value['id'] ."\" class=\" btn btn-primary\" >Xem chi tiết yêu cầu</a>";
+       //echo     "<a href=\"tuvan.php\" class=\"btn btn-danger\" >Từ chối</a>";
+       echo " </td>	";
+	   
+	   echo "</tr>";
+	   };
+		?>
+    </tbody>
+  </table>
+
+    </div>
+
+
     </div>
     </div>
 </body>

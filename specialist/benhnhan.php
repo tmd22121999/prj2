@@ -44,7 +44,7 @@ if (isset($_GET['logout'])) {
 	curl_setopt($curl,CURLOPT_HTTPHEADER,$headers);
 	$resp = curl_exec($curl);
 	$arrResp = json_decode($resp,true);
-	//print_r($arrResp);
+	 //print_r($resp);
 	$name=$arrResp['name'];
 	$email=$arrResp['email'];
 	$avatar=$arrResp['avatar'];
@@ -55,6 +55,7 @@ if (isset($_GET['logout'])) {
 	$creatAt=$arrResp['createdAt'] ;
 	$addr=$arrResp['address'] ;
 	curl_close($curl);
+	$arrInq=$arrResp['inquiries'];
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -170,6 +171,41 @@ if (isset($_GET['logout'])) {
                    <button style="width:40%;" type="button" class="btn btn-danger" onclick="cance();">HỦY BỎ</button>
             </div>
 -->        </form>
+
+
+<div class="container tab-pane active conent"><br>
+      <h1>Danh sách lịch sử yêu cầu tư vấn của bệnh nhân</h1>
+	<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Bệnh nhân</th>
+        <th>Mô tả</th>
+        <th>gì đó</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <?php
+	 foreach ($arrInq as $value) {
+		 echo "<tr>";
+      	echo "<td>". $value['id']. "</td>";
+      	echo "<td>". $value['patient']['name']. "</td>";
+        echo "<td>". $value['content']. "</td>";
+         echo " <td>";
+       echo 	"<a href=\"tuvan.php?id=". $value['id'] ."\" class=\" btn btn-primary\" >Xem chi tiết yêu cầu</a>";
+       //echo     "<a href=\"tuvan.php\" class=\"btn btn-danger\" >Từ chối</a>";
+       echo " </td>	";
+	   
+	   echo "</tr>";
+	   };
+		?>
+    </tbody>
+  </table>
+
+    </div>
+
+
     </div>
     </div>
 </body>

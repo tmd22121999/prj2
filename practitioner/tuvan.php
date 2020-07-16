@@ -28,6 +28,7 @@
 	echo "type : " .$type;
 	$pantient=$arrInj['patient'];
 	echo $pantient['name'];
+
 ?>
 
 

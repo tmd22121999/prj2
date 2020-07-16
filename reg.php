@@ -14,11 +14,7 @@
 		$phone = addslashes($_POST['phone']);
 		$role = addslashes($_POST['role']);
 		$sex = addslashes($_POST['sex']);
-    //Kiểm tra đã nhập đủ chưa
-   		// if (!$name || !$password || $email  || $birth || $phone ) {
-        //		$error['pass']= "Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu. <a href='javascript: history.go(-1)'>Trở lại</a>";
-    	//	}
-		//	else{
+
 			
 			$url='https://fathomless-savannah-38522.herokuapp.com/api/auth/sign_up';
 			$curl = curl_init();
@@ -37,18 +33,26 @@
 				'role'=>$role
 			))
 		));
+		echo $role;
+		$headers = array();
+			$headers[] = 'Accept: */*';;
+			$headers[] = 'Content-Type: application/json';
+			curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 		$resp = curl_exec($curl);
 		$arrResp = json_decode($resp,true);
 		//var_dump($weather);
 		//print_r($uid);
 		//echo $arrResp;
-		if ( !($arrResp['userId']==-1) ){
-			echo $resp;
+		$http_status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+		echo $http_status;
+		if (  $http_status==201 ){
+			//echo $resp;
 			curl_close($curl);
 			//header("Location: index.php");
-			echo $arrResp;
+			//echo $arrResp;
 			//echo "</br>";
 		}else {
+			print_r($arrResp);
 			$error['pass']=$arrResp['message'];
 			curl_close($curl);
 			}
@@ -83,7 +87,6 @@
                 <option value="1">Chuyên khoa</option>
                 <option value="2">Dinh dưỡng</option>
                 <option value="3">Điều phối</option>
-                <option value="4">Bệnh nhân</option>
             </select>
         <span>Giới tính</span>
             <select name="sex" >

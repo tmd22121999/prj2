@@ -94,7 +94,7 @@
 		curl_close($ch);
 	}
 	
-	//print_r($arrResp['replies']);
+	 //print_r($resp);
 ?>
 
 
@@ -127,7 +127,7 @@
         <div class=" content">  
        		<h3>Chi tiết yêu cầu tư vấn</h3><br />
             <h6>Chi tiết yêu cầu tư vấn của bệnh nhân <?php echo " ". $pantient['name'] .", ". $pantient['age'] ." tuổi (id: ".$pantient['id'] . ")
-			 vào ngày : " . $date[2] . "/" . $date[1] . "/" . $date[0]  ?> </h6><br/>
+			 vào ngày : $date[2] /$date[1] /$date[0] " ?> </h6><br/>
              <div class="row">
                 <div class="col-md-4"><img  src="https://i.stack.imgur.com/FaRRO.jpg?s=32&g=1" alt="Smiley face" height="250" width="250"></div>
                 <div class="col-md-8"><h4>Mô tả chi tiết</h4>
@@ -252,12 +252,12 @@
           
           </div>-->
           
-          <form id="messinput" action="" method="post"  class="form-inline " name="freply">
+<!--          <form id="messinput" action="" method="post"  class="form-inline " name="freply">
                         <div class="form-group"  style="width:90%;">
                         <input style="pointer-events:auto; width:100%;" name="replyText" type="text" class="form-control mb-2 mr-sm-2" placeholder="Nhập tin nhắn" id="tinnhan" required="required">
                       </div>
                       <button type="submit" name="reply" class="btn btn-primary mb-2">Gửi</button>
-          </form>
+          </form>-->
     </div>
       
       

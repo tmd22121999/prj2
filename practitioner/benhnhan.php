@@ -187,18 +187,20 @@ if (isset($_GET['logout'])) {
     <tbody>
       
       <?php
-	 foreach ($arrInq as $value) {
-		 echo "<tr>";
-      	echo "<td>". $value['id']. "</td>";
-      	echo "<td>". $value['patient']['name']. "</td>";
-        echo "<td>". $value['content']. "</td>";
-         echo " <td>";
-       echo 	"<a href=\"tuvan.php?id=". $value['id'] ."\" class=\" btn btn-primary\" >Xem chi tiết yêu cầu</a>";
-       //echo     "<a href=\"tuvan.php\" class=\"btn btn-danger\" >Từ chối</a>";
-       echo " </td>	";
-	   
-	   echo "</tr>";
-	   };
+	 if ( ISSET($arrInq)) {
+		 foreach ($arrInq as $value) {
+			 echo "<tr>";
+			echo "<td>". $value['id']. "</td>";
+			echo "<td>". $value['patient']['name']. "</td>";
+			echo "<td>". $value['content']. "</td>";
+			 echo " <td>";
+		   echo 	"<a href=\"tuvan.php?id=". $value['id'] ."\" class=\" btn btn-primary\" >Xem chi tiết yêu cầu</a>";
+		   //echo     "<a href=\"tuvan.php\" class=\"btn btn-danger\" >Từ chối</a>";
+		   echo " </td>	";
+		   
+		   echo "</tr>";
+		   };
+	   }else echo "<h2>Bệnh nhân chưa có yêu cầu tư vấn nào</h2>";
 		?>
     </tbody>
   </table>

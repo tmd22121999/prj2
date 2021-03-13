@@ -7,9 +7,7 @@ $url = 'http://203.171.20.94:8012/api/AccessControl/GetUserInfor';
 $ch = curl_init($url);
 
 //The JSON data.
-$jsonDataEncoded = "{\"deviceId\":\"8a0fc66a61a959f6\", \"qrCodeId\": \"a652d57094b7
-590b0dea115b156c07098abdea87\", \"qrCodeValue\":\"P2249824418
-2551944\"}";
+$jsonDataEncoded = "{\"deviceId\":\"8a0fc66a61a959f6\", \"qrCodeId\": \"a652d57094b7590b0dea115b156c07098abdea87\", \"qrCodeValue\":\"P22498244182551944\"}";
 
 
 
